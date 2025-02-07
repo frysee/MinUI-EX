@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MinUI Launcher",
+            "request": "launch",
+            "type": "cppdbg",
+            "osx": {
+              "MIMode": "lldb"
+            },
+            "cwd": "${workspaceFolder}/workspace/all/minui/build/macos",
+            "program": "${workspaceFolder}/workspace/all/minui/build/macos/minui",
+            "args": [],
+            "environment": [],
+            "preLaunchTask": "C/C++: gcc build macos",
+            "stopAtEntry": false,
+        }
+    ]
+}

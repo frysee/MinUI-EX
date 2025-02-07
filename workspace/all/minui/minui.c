@@ -479,10 +479,23 @@ static void addRecent(char* path, char* alias) {
 static int hasEmu(char* emu_name) {
 	char pak_path[256];
 	sprintf(pak_path, "%s/Emus/%s.pak/launch.sh", PAKS_PATH, emu_name);
-	if (exists(pak_path)) return 1;
+	if (exists(pak_path)){
+		//LOG_info("FOUND emu pak for %s at: %s!\n", emu_name, pak_path);
+		return 1;
+	}
+	else {
+		//LOG_info("No emu pak for %s at: %s!\n", emu_name, pak_path);
+	}
 
 	sprintf(pak_path, "%s/Emus/%s/%s.pak/launch.sh", SDCARD_PATH, PLATFORM, emu_name);
-	return exists(pak_path);
+	if(exists(pak_path)) {
+		//LOG_info("FOUND emu pak for %s at: %s!\n", emu_name, pak_path);
+		return 1;
+	}
+	else {
+		//LOG_info("No emu pak for %s at: %s!\n", emu_name, pak_path);
+		return 0;
+	}
 }
 static int hasCue(char* dir_path, char* cue_path) { // NOTE: dir_path not rom_path
 	char* tmp = strrchr(dir_path, '/') + 1; // folder name
@@ -623,7 +636,10 @@ static int hasRoms(char* dir_name) {
 	getEmuName(dir_name, emu_name);
 	
 	// check for emu pak
-	if (!hasEmu(emu_name)) return has;
+	if (!hasEmu(emu_name)){ 
+		//if (!has) LOG_info("No emu pak for %s!\n", emu_name);
+		return has; 
+	}
 	
 	// check for at least one non-hidden file (we're going to assume it's a rom)
 	sprintf(rom_path, "%s/%s/", ROMS_PATH, dir_name);
@@ -637,7 +653,8 @@ static int hasRoms(char* dir_name) {
 		}
 		closedir(dh);
 	}
-	// if (!has) printf("No roms for %s!\n", dir_name);
+	//if (!has) 
+	//	LOG_info("No roms for %s!\n", dir_name);
 	return has;
 }
 static Array* getRoot(void) {
@@ -1600,7 +1617,7 @@ int main (int argc, char *argv[]) {
 				tmp[0] = '\0';
 				
 				sprintf(res_path, "%s/.res/%s.png", res_root, res_name);
-				LOG_info("res_path: %s\n", res_path);
+				//LOG_info("res_path: %s\n", res_path);
 				if (exists(res_path)) {
 					had_thumb = 1;
 					SDL_Surface* thumb = IMG_Load(res_path);
@@ -1612,27 +1629,31 @@ int main (int argc, char *argv[]) {
 			}
 			
 			int ow = GFX_blitHardwareGroup(screen, show_setting);
-			
+
 			if (show_version) {
 				if (!version) {
+					char *tmp = NULL,*commit = NULL;
 					char release[256];
-					getFile(ROOT_SYSTEM_PATH "/version.txt", release, 256);
-					
-					char *tmp,*commit;
-					commit = strrchr(release, '\n');
-					commit[0] = '\0';
-					commit = strrchr(release, '\n')+1;
-					tmp = strchr(release, '\n');
-					tmp[0] = '\0';
-					
+					int versionAvailable = exists(ROOT_SYSTEM_PATH "/version.txt");
+					if (versionAvailable > 0)
+					{
+						getFile(ROOT_SYSTEM_PATH "/version.txt", release, 256);
+						
+						commit = strrchr(release, '\n');
+						commit[0] = '\0';
+						commit = strrchr(release, '\n')+1;
+						tmp = strchr(release, '\n');
+						tmp[0] = '\0';
+					}
+
 					// TODO: not sure if I want bare PLAT_* calls here
 					char* extra_key = "Model";
 					char* extra_val = PLAT_getModel(); 
 					
 					SDL_Surface* release_txt = TTF_RenderUTF8_Blended(font.large, "Release", COLOR_DARK_TEXT);
-					SDL_Surface* version_txt = TTF_RenderUTF8_Blended(font.large, release, COLOR_WHITE);
+					SDL_Surface* version_txt = TTF_RenderUTF8_Blended(font.large, versionAvailable ? release : "unknown", COLOR_WHITE);
 					SDL_Surface* commit_txt = TTF_RenderUTF8_Blended(font.large, "Commit", COLOR_DARK_TEXT);
-					SDL_Surface* hash_txt = TTF_RenderUTF8_Blended(font.large, commit, COLOR_WHITE);
+					SDL_Surface* hash_txt = TTF_RenderUTF8_Blended(font.large, versionAvailable ? commit : "unknown", COLOR_WHITE);
 					
 					SDL_Surface* key_txt = TTF_RenderUTF8_Blended(font.large, extra_key, COLOR_DARK_TEXT);
 					SDL_Surface* val_txt = TTF_RenderUTF8_Blended(font.large, extra_val, COLOR_WHITE);
@@ -1644,8 +1665,8 @@ int main (int argc, char *argv[]) {
 					if (commit_txt->w>l_width) l_width = commit_txt->w;
 					if (key_txt->w>l_width) l_width = commit_txt->w;
 
-					if (version_txt->w>r_width) r_width = version_txt->w;
-					if (hash_txt->w>r_width) r_width = hash_txt->w;
+					if (version_txt && version_txt->w>r_width) r_width = version_txt->w;
+					if (hash_txt && hash_txt->w>r_width) r_width = hash_txt->w;
 					if (val_txt->w>r_width) r_width = val_txt->w;
 					
 					#define VERSION_LINE_HEIGHT 24

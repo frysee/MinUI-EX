@@ -265,3 +265,5 @@ void SetMute(int value) {
 	if (settings->mute) SetRawVolume(0);
 	else SetVolume(GetVolume());
 }
+
+int GetSleepDelay(void) { return 30000; }

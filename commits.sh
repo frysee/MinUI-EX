@@ -97,6 +97,10 @@ bump() {
 	tell MAGICMINI
 	show ./workspace/magicmini/other/351files
 	cores magicmini
+
+	tell V10
+	show ./workspace/v10/other/351files
+	cores v10
 	
 	tell ZERO28
 	show ./workspace/zero28/other/DinguxCommander-sdl2
