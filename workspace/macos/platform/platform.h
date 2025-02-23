@@ -47,10 +47,10 @@
 #define CODE_SELECT		53
 #define CODE_START		40
 
-#define CODE_A			22
-#define CODE_B			4
-#define CODE_X			26
-#define CODE_Y			20
+#define CODE_A 22
+#define CODE_B 4
+#define CODE_X 26
+#define CODE_Y 20
 
 #define CODE_L1			CODE_NA
 #define CODE_R1			CODE_NA
@@ -105,9 +105,9 @@
 
 ///////////////////////////////
 
-#define FIXED_SCALE 	2
-#define FIXED_WIDTH		640
-#define FIXED_HEIGHT	480
+#define FIXED_SCALE 	1
+#define FIXED_WIDTH		480
+#define FIXED_HEIGHT	320
 #define FIXED_BPP		2
 #define FIXED_DEPTH		(FIXED_BPP * 8)
 #define FIXED_PITCH		(FIXED_WIDTH * FIXED_BPP)
@@ -121,12 +121,12 @@
 
 ///////////////////////////////
 
-#define MAIN_ROW_COUNT 6
-#define PADDING 10
+#define MAIN_ROW_COUNT 8
+#define PADDING 20
 
 ///////////////////////////////
 
-#define SDCARD_PATH "/Users/shauninman/Projects/Personal/MinUI/workspace/macos/FAKESD"
+#define SDCARD_PATH "/Library/Developer/Projects/private/MinUI_FAKESD"
 #define MUTE_VOLUME_RAW 63 // 0 unintuitively is 100% volume
 
 ///////////////////////////////

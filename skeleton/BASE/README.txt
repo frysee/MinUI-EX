@@ -30,6 +30,12 @@ MinUI is meant to be used with Moss installed on the SD card that goes into the 
 
 Copy "MinUI.zip" (without unzipping) to the root of the SD card that goes into the right slot (labeled TFGAME) of the RGB30.
 
+V10
+
+MinUI is meant to be installed on top of a Rocknix installation. Download and flash the latest version:
+  
+  https://github.com/ROCKNIX/distribution/releases/latest
+
 MAGICX XU MINI M
 
 MinUI is meant to be used with a heavily modified stock SD card that goes into the left slot (labeled TF1/INT). Download and flash the latest version:

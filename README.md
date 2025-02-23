@@ -1,10 +1,22 @@
-# MinUI
+# MinUI EX
 
-MinUI is a focused, custom launcher and libretro frontend for [a variety of retro handhelds](#supported-devices).
+MinUI is a focused, custom launcher and libretro frontend for [a variety of retro handhelds](#supported-devices). This fork is my ow modified version, with additional features and platform support.
 
 <img src="github/minui-main.png" width=320 /> <img src="github/minui-menu-gbc.png" width=320 /> 
 
-## Features
+## Additional features of EX, current and future
+
+- Added support for Powkiddy RGB10/V10/etc (rk3326)
+- Game Switcher to quickly launch games into their last save state, as a replacement/alterative to the bare-bones "Recently Played" collection (WIP)
+- Simplistic, native settings menu to configure the basics
+- Deep sleep support (TODO)
+- Proper Vsync and audio resampling (TODO)
+- Maybe some light theming support?
+- Blue light filter/night mode?
+- Add some automated versioning and CI like a real project
+- minor bugfixes
+
+## Base Features of MinUI
 
 - Simple launcher, simple SD card
 - No settings or configuration

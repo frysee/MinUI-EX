@@ -127,8 +127,10 @@ extern int is_brick;
 
 ///////////////////////////////
 
-#define MAIN_ROW_COUNT (is_brick?7:8)
-#define PADDING (is_brick?5:40)
+#define MAIN_ROW_COUNT (is_brick?7:10)
+// pill size: 30px
+// TSP: 720px / FIXED_SCALE = 360px, 10 rows + footer = 11 pills -> 360-330 -> 15px max for top and bottom padding
+#define PADDING (is_brick?5:10)
 
 ///////////////////////////////
 
