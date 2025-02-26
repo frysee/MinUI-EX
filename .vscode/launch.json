@@ -17,6 +17,20 @@
             "environment": [],
             "preLaunchTask": "C/C++: gcc build macos",
             "stopAtEntry": false,
+        },
+        {
+            "name": "App: Battery",
+            "request": "launch",
+            "type": "cppdbg",
+            "osx": {
+              "MIMode": "lldb"
+            },
+            "cwd": "${workspaceFolder}/workspace/all/battery/build/macos",
+            "program": "${workspaceFolder}/workspace/all/battery/build/macos/battery",
+            "args": [],
+            "environment": [],
+            "preLaunchTask": "C/C++: gcc build macos - Battery",
+            "stopAtEntry": false,
         }
     ]
 }

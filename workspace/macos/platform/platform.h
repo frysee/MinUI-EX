@@ -105,9 +105,9 @@
 
 ///////////////////////////////
 
-#define FIXED_SCALE 	1
-#define FIXED_WIDTH		480
-#define FIXED_HEIGHT	320
+#define FIXED_SCALE 	2
+#define FIXED_WIDTH		1280
+#define FIXED_HEIGHT	720
 #define FIXED_BPP		2
 #define FIXED_DEPTH		(FIXED_BPP * 8)
 #define FIXED_PITCH		(FIXED_WIDTH * FIXED_BPP)

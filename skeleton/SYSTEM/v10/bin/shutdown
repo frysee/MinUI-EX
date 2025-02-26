@@ -5,5 +5,4 @@ if [ -n "$DATETIME_PATH" ]; then
 	sync
 fi
 
-cat /dev/zero > /dev/fb0
 shutdown now
