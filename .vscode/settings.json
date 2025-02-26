@@ -1,3 +1,14 @@
 {
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "files.associations": {
+    "pthread.h": "c",
+    "sqlite3.h": "c",
+    "utils.h": "c",
+    "scaler.h": "c",
+    "api.h": "c",
+    "defines.h": "c",
+    "vector": "c",
+    "variant": "c",
+    "__locale": "c"
+  }
 }

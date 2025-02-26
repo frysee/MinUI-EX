@@ -29,6 +29,7 @@ set_gpu_gov ondemand
 #######################################
 
 keymon.elf & # &> $SDCARD_PATH/keymon.txt &
+batmon.elf & # &> $SDCARD_PATH/batmon.txt &
 
 #######################################
 
@@ -61,3 +62,5 @@ while [ -f "$EXEC_PATH" ]; do
 		sync
 	fi
 done
+
+shutdown # just in case
