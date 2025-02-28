@@ -970,6 +970,8 @@ void PLAT_powerOff(void)
 	exit(0);
 }
 
+int PLAT_supportsDeepSleep(void) { return 1; }
+
 ///////////////////////////////
 
 #define CPU_PATH "/sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed"
