@@ -166,5 +166,3 @@ void SetHDMI(int value) { /* buh */ }
 
 int GetMute(void) { return 0; }
 void SetMute(int value) {}
-
-int GetSleepDelay(void) { return 30000; }

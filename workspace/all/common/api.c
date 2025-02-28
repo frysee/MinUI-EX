@@ -1540,11 +1540,12 @@ void PWR_update(int* _dirty, int* _show_setting, PWR_callback_t before_sleep, PW
 		power_pressed_at = now;
 	}
 	
-	if (now-last_input_at>=GetSleepDelay() && PWR_preventAutosleep()) last_input_at = now;
+	#define SLEEP_DELAY 30000
+	if (now-last_input_at>=SLEEP_DELAY && PWR_preventAutosleep()) last_input_at = now;
 	
 	if (
 		pwr.requested_sleep || // hardware requested sleep
-		now-last_input_at>=GetSleepDelay() || // autosleep
+		now-last_input_at>=SLEEP_DELAY || // autosleep
 		(pwr.can_sleep && PAD_justReleased(BTN_SLEEP) && power_pressed_at) // manual sleep
 	) {
 		pwr.requested_sleep = 0;

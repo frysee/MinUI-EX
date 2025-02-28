@@ -38,8 +38,6 @@ void SetHDMI(int value) {}
 
 int GetMute(void) { return 0; }
 
-int GetSleepDelay() { return 30000; }
-
 ///////////////////////////////
 
 static SDL_Joystick *joystick;
