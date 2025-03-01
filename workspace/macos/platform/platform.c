@@ -71,8 +71,8 @@ static int device_height;
 static int device_pitch;
 static int rotate = 0;
 SDL_Surface* PLAT_initVideo(void) {
-	// SDL_InitSubSystem(SDL_INIT_VIDEO);
-	// SDL_ShowCursor(0);
+	SDL_InitSubSystem(SDL_INIT_VIDEO);
+	SDL_ShowCursor(0);
 	//
 	// LOG_info("Available video drivers:\n");
 	// for (int i=0; i<SDL_GetNumVideoDrivers(); i++) {
@@ -87,28 +87,28 @@ SDL_Surface* PLAT_initVideo(void) {
 	// 	LOG_info("- %s\n", info.name);
 	// }
 	//
-	// LOG_info("Available display modes:\n");
+	//LOG_info("Available display modes:\n");
 	SDL_DisplayMode mode;
-	// for (int i=0; i<SDL_GetNumDisplayModes(0); i++) {
+	//for (int i=0; i<SDL_GetNumDisplayModes(0); i++) {
 	// 	SDL_GetDisplayMode(0, i, &mode);
 	// 	LOG_info("- %ix%i (%s)\n", mode.w,mode.h, SDL_GetPixelFormatName(mode.format));
 	// }
 	SDL_GetCurrentDisplayMode(0, &mode);
-	// if (mode.h>mode.w)
-	rotate = 1;
+	if (mode.h>mode.w)
+		rotate = 1;
 	LOG_info("Current display mode: %ix%i (%s)\n", mode.w,mode.h, SDL_GetPixelFormatName(mode.format));
 	
 	int w = FIXED_WIDTH;
 	int h = FIXED_HEIGHT;
 	int p = FIXED_PITCH;
-	vid.window   = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, h,w, SDL_WINDOW_SHOWN);
+	vid.window   = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w,h, SDL_WINDOW_SHOWN);
 	vid.renderer = SDL_CreateRenderer(vid.window,-1,SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
 	
 	// SDL_RendererInfo info;
 	// SDL_GetRendererInfo(vid.renderer, &info);
 	// LOG_info("Current render driver: %s\n", info.name);
 	
-	vid.texture = SDL_CreateTexture(vid.renderer,SDL_PIXELFORMAT_RGB565, SDL_TEXTUREACCESS_STREAMING, w,h);
+	vid.texture = SDL_CreateTexture(vid.renderer,SDL_PIXELFORMAT_RGB565, SDL_TEXTUREACCESS_STREAMING, rotate != 0 ? h : w, rotate != 0 ? w : h);
 	
 	// SDL_SetTextureScaleMode(vid.texture, SDL_ScaleModeNearest);
 	
@@ -315,9 +315,13 @@ void PLAT_enableOverlay(int enable) {
 
 static int online = 1;
 void PLAT_getBatteryStatus(int* is_charging, int* charge) {
+	PLAT_getBatteryStatusFine(is_charging, charge);
+}
+
+void PLAT_getBatteryStatusFine(int* is_charging, int* charge)
+{
 	*is_charging = 1;
 	*charge = 100;
-	return;
 }
 
 void PLAT_enableBacklight(int enable) {
