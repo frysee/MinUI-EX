@@ -96,6 +96,7 @@ Extras:
 | Miyoo Mini | MinUI-20230922b-2 | Deprecated |
 | Miyoo Mini Plus | MinUI-20230922b-2 | Deprecated |
 | Powkiddy RGB30 | MinUI-20231014b-1 | Deprecated |
+| Powkiddy V10 |                  | Active |
 | Trimui Brick | MinUI-20241028-0 | Active |
 | Trimui Smart | MinUI-20230922b-2 | Deprecated |
 | Trimui Smart Pro | MinUI-20231111b-2 | Maintained |
